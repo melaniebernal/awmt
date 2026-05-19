@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aligned With Me Therapy — Onboarding</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Raleway:wght@200;300;400;500;600&family=Lato:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal:   #1D4E4A;
+  --terra:  #C47B5A;
+  --terra-l:#FBF3EE;
+  --cream:  #FAF7F3;
+  --warm:   #EFE9E3;
+  --char:   #2D2D28;
+  --esp:    #534A46;
+  --muted:  #8A7E76;
+  --border: #D8CFC8;
+  --focus:  #C47B5A;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--teal);
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── HERO HEADER ── */
+.hero {
+  background: var(--teal);
+  padding: 56px 24px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,0.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.018) 1px,transparent 1px);
+  background-size:28px 28px;
+}
+.hero-accent {
+  position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(196,123,90,0.5) 20%,rgba(196,123,90,0.9) 50%,rgba(196,123,90,0.5) 80%,transparent);
+}
+.hero-badge {
+  display:inline-block;
+  font-family:'Raleway',sans-serif;font-weight:200;
+  font-size:9px;letter-spacing:0.45em;
+  color:rgba(196,123,90,0.65);text-transform:uppercase;
+  margin-bottom:16px;position:relative;z-index:2;
+}
+.hero-title {
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:clamp(36px,7vw,56px);color:#FAF7F3;
+  line-height:1.05;margin-bottom:10px;
+  position:relative;z-index:2;
+}
+.hero-title em { font-style:italic;color:rgba(196,123,90,0.85); }
+.hero-sub {
+  font-family:'Lato',sans-serif;font-style:italic;
+  font-size:15px;color:rgba(250,247,243,0.45);
+  line-height:1.65;max-width:520px;margin:0 auto 0;
+  position:relative;z-index:2;
+}
+.hero-magia {
+  position:relative;z-index:2;
+  margin-top:24px;
+  font-family:'Raleway',sans-serif;font-weight:200;
+  font-size:9px;letter-spacing:0.28em;
+  color:rgba(250,247,243,0.2);text-transform:uppercase;
+}
+
+/* ── FORM WRAP ── */
+.form-wrap {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+}
+
+/* ── SECTION ── */
+.section {
+  margin-top: 36px;
+}
+.section-header {
+  background: var(--teal);
+  border-top: 2px solid var(--terra);
+  padding: 14px 0 12px;
+  margin-bottom: 20px;
+  display:flex;align-items:center;gap:12px;
+}
+.section-num {
+  font-family:'Cormorant Garamond',serif;font-size:28px;
+  color:var(--terra);line-height:1;
+}
+.section-title {
+  font-family:'Raleway',sans-serif;font-weight:500;
+  font-size:11px;letter-spacing:0.25em;
+  color:rgba(250,247,243,0.65);text-transform:uppercase;
+}
+
+/* ── QUESTION CARD ── */
+.q-card {
+  background: var(--cream);
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin-bottom: 14px;
+}
+.q-label {
+  font-family:'Raleway',sans-serif;font-weight:500;
+  font-size:13px;color:var(--teal);
+  margin-bottom:10px;line-height:1.4;display:block;
+}
+.q-hint {
+  font-family:'Lato',sans-serif;font-style:italic;
+  font-size:11.5px;color:var(--muted);
+  margin-bottom:10px;line-height:1.5;display:block;
+}
+
+/* ── INPUTS ── */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea,
+select {
+  width:100%;
+  background: var(--warm);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-family:'Lato',sans-serif;
+  font-size:14px;
+  color:var(--char);
+  outline:none;
+  transition:border-color 0.18s,box-shadow 0.18s;
+  -webkit-appearance:none;
+}
+input:focus, textarea:focus, select:focus {
+  border-color:var(--terra);
+  box-shadow:0 0 0 3px rgba(196,123,90,0.12);
+}
+textarea { resize:vertical;min-height:90px;line-height:1.6; }
+
+/* ── RADIO / CHECKBOX ── */
+.choice-group { display:flex;flex-direction:column;gap:8px; }
+.choice-item {
+  display:flex;align-items:flex-start;gap:12px;
+  padding:12px 14px;
+  background:var(--warm);
+  border:1px solid var(--border);
+  border-radius:8px;cursor:pointer;
+  transition:all 0.18s;
+  -webkit-tap-highlight-color:transparent;
+}
+.choice-item:hover { border-color:var(--terra);background:var(--terra-l); }
+.choice-item.selected { border-color:var(--terra);background:var(--terra-l); }
+.choice-item input { display:none; }
+.choice-dot {
+  width:18px;height:18px;min-width:18px;
+  border-radius:50%;border:2px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  margin-top:1px;transition:all 0.18s;flex-shrink:0;
+}
+.choice-item.selected .choice-dot {
+  border-color:var(--terra);background:var(--terra);
+}
+.choice-dot::after {
+  content:'';width:6px;height:6px;
+  border-radius:50%;background:white;
+  opacity:0;transition:opacity 0.18s;
+}
+.choice-item.selected .choice-dot::after { opacity:1; }
+
+/* Checkbox variant */
+.choice-check {
+  width:18px;height:18px;min-width:18px;
+  border-radius:4px;border:2px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  margin-top:1px;transition:all 0.18s;flex-shrink:0;
+  font-size:11px;color:white;
+}
+.choice-item.selected .choice-check {
+  border-color:var(--terra);background:var(--terra);
+}
+.choice-item.selected .choice-check::after { content:'✓'; }
+
+.choice-text {
+  font-family:'Lato',sans-serif;font-size:13.5px;
+  color:var(--char);line-height:1.45;
+}
+
+/* ── SUBMIT ── */
+.submit-section {
+  margin-top:32px;text-align:center;
+}
+.submit-btn {
+  background:var(--terra);color:#FAF7F3;
+  font-family:'Raleway',sans-serif;font-weight:700;
+  font-size:12px;letter-spacing:0.2em;text-transform:uppercase;
+  padding:17px 48px;border-radius:2px;border:none;
+  cursor:pointer;transition:all 0.2s;
+  display:inline-block;
+}
+.submit-btn:hover { background:#B36B4A; }
+.submit-btn:disabled { opacity:0.5;cursor:not-allowed; }
+.submit-note {
+  font-family:'Lato',sans-serif;font-style:italic;
+  font-size:12px;color:rgba(250,247,243,0.3);
+  margin-top:12px;
+}
+
+/* ── SUCCESS ── */
+.success-screen {
+  display:none;
+  text-align:center;padding:80px 24px;
+  max-width:500px;margin:0 auto;
+}
+.success-icon { font-size:48px;margin-bottom:20px; }
+.success-title {
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:38px;color:#FAF7F3;margin-bottom:12px;
+}
+.success-body {
+  font-family:'Lato',sans-serif;font-style:italic;
+  font-size:15px;color:rgba(250,247,243,0.45);line-height:1.7;
+}
+
+/* ── PROGRESS ── */
+.progress-bar {
+  height:2px;background:rgba(196,123,90,0.15);
+  position:sticky;top:0;z-index:10;
+}
+.progress-fill {
+  height:100%;background:var(--terra);
+  transition:width 0.3s ease;width:0%;
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<div class="hero">
+  <div class="hero-accent"></div>
+  <div class="hero-badge">Magia Marketing Studio</div>
+  <div class="hero-title">Welcome,<br><em>Ana.</em></div>
+  <div class="hero-sub">About 15 minutes. This is where we get to know you, your families, your voice, and your vision — so everything we create feels like it came from you.</div>
+  <div class="hero-magia">Aligned With Me Therapy &nbsp;·&nbsp; May 2026</div>
+</div>
+
+<div id="mainForm">
+<div class="form-wrap">
+
+  <!-- SECTION 1: YOUR PRACTICE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <div class="section-title">Your Practice</div>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Your full name</label>
+      <input type="text" id="q_name" placeholder="Ana Campo-Jimenez">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Practice name</label>
+      <input type="text" id="q_biz_name" placeholder="Aligned With Me Therapy">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Best phone number to reach you</label>
+      <input type="text" id="q_phone" placeholder="(305) 555-0000">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Email address</label>
+      <input type="email" id="q_email" placeholder="ana@alignedwithmetherapy.com">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Website URL (if you have one)</label>
+      <input type="text" id="q_website" placeholder="alignedwithmetherapy.com">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Instagram handle</label>
+      <input type="text" id="q_ig" placeholder="@alignedwithmetherapy">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">How long have you been practicing as a speech-language pathologist?</label>
+      <input type="text" id="q_years" placeholder="e.g. 8 years">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">How do you deliver your services?</label>
+      <div class="choice-group">
+        <div class="choice-item" onclick="selectRadio(this,'q_format','In-person only')">
+          <div class="choice-dot"></div><div class="choice-text">In-person only</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_format','Telehealth only')">
+          <div class="choice-dot"></div><div class="choice-text">Telehealth only</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_format','Both in-person and telehealth')">
+          <div class="choice-dot"></div><div class="choice-text">Both in-person and telehealth</div>
+        </div>
+      </div>
+      <input type="hidden" id="q_format">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">What area(s) of South Florida do you serve?</label>
+      <input type="text" id="q_area" placeholder="e.g. Miami-Dade, Broward, Palm Beach...">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Do you work solo or do you have a team?</label>
+      <div class="choice-group">
+        <div class="choice-item" onclick="selectRadio(this,'q_team','Solo — just me')">
+          <div class="choice-dot"></div><div class="choice-text">Solo — just me</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_team','Me + an admin or VA')">
+          <div class="choice-dot"></div><div class="choice-text">Me + an admin or VA</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_team','Small team (2–3 clinicians)')">
+          <div class="choice-dot"></div><div class="choice-text">Small team (2–3 clinicians)</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_team','Growing team (4+)')">
+          <div class="choice-dot"></div><div class="choice-text">Growing team (4+)</div>
+        </div>
+      </div>
+      <input type="hidden" id="q_team">
+    </div>
+  </div>
+
+  <!-- SECTION 2: THE FAMILIES YOU SERVE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <div class="section-title">The Families You Serve</div>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Who is your ideal client family? <span class="q-hint">Select all that apply.</span></label>
+      <div class="choice-group">
+        <div class="choice-item" onclick="toggleCheck(this,'q_client_types','Spanish-speaking families navigating the US healthcare system')">
+          <div class="choice-check"></div><div class="choice-text">Spanish-speaking families navigating the US healthcare system</div>
+        </div>
+        <div class="choice-item" onclick="toggleCheck(this,'q_client_types','Bilingual families raising multilingual children')">
+          <div class="choice-check"></div><div class="choice-text">Bilingual families raising multilingual children</div>
+        </div>
+        <div class="choice-item" onclick="toggleCheck(this,'q_client_types','Parents of late talkers (toddlers 18 months–3 years)')">
+          <div class="choice-check"></div><div class="choice-text">Parents of late talkers (toddlers 18 months–3 years)</div>
+        </div>
+        <div class="choice-item" onclick="toggleCheck(this,'q_client_types','School-age children with language delays or disorders')">
+          <div class="choice-check"></div><div class="choice-text">School-age children with language delays or disorders</div>
+        </div>
+        <div class="choice-item" onclick="toggleCheck(this,'q_client_types','Children with autism or developmental differences')">
+          <div class="choice-check"></div><div class="choice-text">Children with autism or developmental differences</div>
+        </div>
+        <div class="choice-item" onclick="toggleCheck(this,'q_client_types','Children with articulation or phonological disorders')">
+          <div class="choice-check"></div><div class="choice-text">Children with articulation or phonological disorders</div>
+        </div>
+        <div class="choice-item" onclick="toggleCheck(this,'q_client_types','Families seeking culturally affirming, Latinx-centered care')">
+          <div class="choice-check"></div><div class="choice-text">Families seeking culturally affirming, Latinx-centered care</div>
+        </div>
+      </div>
+      <input type="hidden" id="q_client_types">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">What languages do you provide services in?</label>
+      <div class="choice-group">
+        <div class="choice-item" onclick="selectRadio(this,'q_languages','English only')">
+          <div class="choice-dot"></div><div class="choice-text">English only</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_languages','English and Spanish')">
+          <div class="choice-dot"></div><div class="choice-text">English and Spanish — fully bilingual</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_languages','English, Spanish, and other')">
+          <div class="choice-dot"></div><div class="choice-text">English, Spanish, and other languages</div>
+        </div>
+      </div>
+      <input type="hidden" id="q_languages">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">What frustrates your ideal family most about finding or working with an SLP?</label>
+      <span class="q-hint">Language barriers, lack of cultural understanding, long waitlists, confusing insurance, being told to stop speaking Spanish...</span>
+      <textarea id="q_frustration" placeholder="Tell us what these families are dealing with before they find you..."></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">What does a great client relationship look like to you?</label>
+      <textarea id="q_relationship" placeholder="How do you like to work with families? What does trust look like in your practice?"></textarea>
+    </div>
+  </div>
+
+  <!-- SECTION 3: BRAND VOICE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <div class="section-title">Brand Voice — The Most Important Section</div>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">If Aligned With Me Therapy were a person, they would be:</label>
+      <div class="choice-group">
+        <div class="choice-item" onclick="selectRadio(this,'q_persona','Warm and nurturing — families feel held from the very first call')">
+          <div class="choice-dot"></div><div class="choice-text">Warm and nurturing — families feel held from the very first call</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_persona','Expert and reassuring — parents trust the science behind the warmth')">
+          <div class="choice-dot"></div><div class="choice-text">Expert and reassuring — parents trust the science behind the warmth</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_persona','Culturally connected — I see you, I get it, your child is safe here')">
+          <div class="choice-dot"></div><div class="choice-text">Culturally connected — I see you, I get it, your child is safe here</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_persona','Empowering — I give parents the tools, not just the sessions')">
+          <div class="choice-dot"></div><div class="choice-text">Empowering — I give parents the tools, not just the sessions</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_persona','Calm and grounded — no panic, just progress')">
+          <div class="choice-dot"></div><div class="choice-text">Calm and grounded — no panic, just progress</div>
+        </div>
+      </div>
+      <input type="hidden" id="q_persona">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Pick the message that feels MOST like Aligned With Me Therapy:</label>
+      <div class="choice-group">
+        <div class="choice-item" onclick="selectRadio(this,'q_headline_yes','Every child has a voice. My job is to help them find it.')">
+          <div class="choice-dot"></div><div class="choice-text">"Every child has a voice. My job is to help them find it."</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_headline_yes','Speech therapy should feel like home, not a clinical appointment.')">
+          <div class="choice-dot"></div><div class="choice-text">"Speech therapy should feel like home, not a clinical appointment."</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_headline_yes','Bilingual children develop language on their own timeline. I\'m here for all of it.')">
+          <div class="choice-dot"></div><div class="choice-text">"Bilingual children develop language on their own timeline. I'm here for all of it."</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_headline_yes','South Florida\'s bilingual families deserve an SLP who truly understands them.')">
+          <div class="choice-dot"></div><div class="choice-text">"South Florida's bilingual families deserve an SLP who truly understands them."</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_headline_yes','Your child is exactly where they need to be. Let\'s grow from here.')">
+          <div class="choice-dot"></div><div class="choice-text">"Your child is exactly where they need to be. Let's grow from here."</div>
+        </div>
+      </div>
+      <input type="hidden" id="q_headline_yes">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Pick the message that feels LEAST like Aligned With Me Therapy:</label>
+      <div class="choice-group">
+        <div class="choice-item" onclick="selectRadio(this,'q_headline_no','Fast results in 6 sessions — guaranteed.')">
+          <div class="choice-dot"></div><div class="choice-text">"Fast results in 6 sessions — guaranteed."</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_headline_no','Affordable speech therapy for all ages and budgets.')">
+          <div class="choice-dot"></div><div class="choice-text">"Affordable speech therapy for all ages and budgets."</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_headline_no','We fix speech delays.')">
+          <div class="choice-dot"></div><div class="choice-text">"We fix speech delays."</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_headline_no','Book your evaluation today — limited slots available!')">
+          <div class="choice-dot"></div><div class="choice-text">"Book your evaluation today — limited slots available!"</div>
+        </div>
+      </div>
+      <input type="hidden" id="q_headline_no">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">In your own words — what makes Aligned With Me Therapy different from every other SLP practice in South Florida?</label>
+      <textarea id="q_differentiator" placeholder="Be real. What do you bring that no one else does, or no one does the way you do..."></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">What do you NEVER want your practice to sound like?</label>
+      <textarea id="q_never" placeholder="Clinical and cold, preachy, fear-based, generic, culturally tone-deaf..."></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Is there anything about your personal story or journey as a bilingual SLP that you'd like woven into your brand?</label>
+      <span class="q-hint">Optional — only share what feels right to share publicly.</span>
+      <textarea id="q_story" placeholder="Your background, why you started, what drives you..."></textarea>
+    </div>
+  </div>
+
+  <!-- SECTION 4: CONTENT + SOCIAL -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <div class="section-title">Content + Social</div>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">How comfortable are you on camera for reels or talking-head videos?</label>
+      <div class="choice-group">
+        <div class="choice-item" onclick="selectRadio(this,'q_camera','Very comfortable — let\'s do it')">
+          <div class="choice-dot"></div><div class="choice-text">Very comfortable — let's do it</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_camera','Comfortable with direction and a script')">
+          <div class="choice-dot"></div><div class="choice-text">Comfortable with direction and a script</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_camera','I prefer voiceover, text overlays, or carousels')">
+          <div class="choice-dot"></div><div class="choice-text">I prefer voiceover, text overlays, or carousels</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_camera','Keep me off camera — content only')">
+          <div class="choice-dot"></div><div class="choice-text">Keep me off camera — content only</div>
+        </div>
+      </div>
+      <input type="hidden" id="q_camera">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">What content pillars do you want Aligned With Me Therapy known for? <span class="q-hint">Select all that apply.</span></label>
+      <div class="choice-group">
+        <div class="choice-item" onclick="toggleCheck(this,'q_content_pillars','Bilingual and multilingual child development tips')">
+          <div class="choice-check"></div><div class="choice-text">Bilingual and multilingual child development tips</div>
+        </div>
+        <div class="choice-item" onclick="toggleCheck(this,'q_content_pillars','Myth-busting (\"My child is just shy,\" \"Stop speaking Spanish at home\")')">
+          <div class="choice-check"></div><div class="choice-text">Myth-busting ("My child is just shy," "Stop speaking Spanish at home")</div>
+        </div>
+        <div class="choice-item" onclick="toggleCheck(this,'q_content_pillars','Parent education and empowerment — tools to use at home')">
+          <div class="choice-check"></div><div class="choice-text">Parent education and empowerment — tools to use at home</div>
+        </div>
+        <div class="choice-item" onclick="toggleCheck(this,'q_content_pillars','Culturally affirming content for Latinx families')">
+          <div class="choice-check"></div><div class="choice-text">Culturally affirming content for Latinx families</div>
+        </div>
+        <div class="choice-item" onclick="toggleCheck(this,'q_content_pillars','Child development milestones — what\'s typical, what to watch for')">
+          <div class="choice-check"></div><div class="choice-text">Child development milestones — what's typical, what to watch for</div>
+        </div>
+        <div class="choice-item" onclick="toggleCheck(this,'q_content_pillars','Behind-the-scenes of a therapy session (age-appropriate)')">
+          <div class="choice-check"></div><div class="choice-text">Behind-the-scenes of a therapy session (age-appropriate)</div>
+        </div>
+        <div class="choice-item" onclick="toggleCheck(this,'q_content_pillars','Client wins and transformation stories (with permission)')">
+          <div class="choice-check"></div><div class="choice-text">Client wins and transformation stories (with permission)</div>
+        </div>
+        <div class="choice-item" onclick="toggleCheck(this,'q_content_pillars','Ana\'s personal story and professional journey')">
+          <div class="choice-check"></div><div class="choice-text">Ana's personal story and professional journey</div>
+        </div>
+      </div>
+      <input type="hidden" id="q_content_pillars">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Do you want content in English, Spanish, or both?</label>
+      <div class="choice-group">
+        <div class="choice-item" onclick="selectRadio(this,'q_content_lang','English primarily, with some Spanish')">
+          <div class="choice-dot"></div><div class="choice-text">English primarily, with some Spanish</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_content_lang','Spanish primarily, with some English')">
+          <div class="choice-dot"></div><div class="choice-text">Spanish primarily, with some English</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_content_lang','Truly bilingual — equal mix of both')">
+          <div class="choice-dot"></div><div class="choice-text">Truly bilingual — equal mix of both</div>
+        </div>
+        <div class="choice-item" onclick="selectRadio(this,'q_content_lang','English only for now')">
+          <div class="choice-dot"></div><div class="choice-text">English only for now</div>
+        </div>
+      </div>
+      <input type="hidden" id="q_content_lang">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Any accounts — SLPs, therapists, healthcare providers, educators — whose content you love? Any industry is fair game.</label>
+      <textarea id="q_inspo" placeholder="@handles, practice names, creators, brands you admire..."></textarea>
+    </div>
+  </div>
+
+  <!-- SECTION 5: GOALS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">05</div>
+      <div class="section-title">Goals</div>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">What's your current caseload size?</label>
+      <input type="text" id="q_caseload" placeholder="e.g. 18 active clients per week">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">How many new families do you want to bring on per month?</label>
+      <input type="text" id="q_client_goal" placeholder="e.g. 4–6 new families/month">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Is there a specific service or program you most want to grow?</label>
+      <textarea id="q_service_focus" placeholder="Evaluations, intensives, parent coaching, group sessions, a bilingual program..."></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">What does success look like for Aligned With Me Therapy in 12 months?</label>
+      <textarea id="q_success" placeholder="Caseload, revenue, community impact, expanding your team, speaking engagements, recognition..."></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Anything else you want Magia to know about your vision for this practice?</label>
+      <textarea id="q_extra" placeholder="Open floor — say anything..."></textarea>
+    </div>
+  </div>
+
+  <!-- SECTION 6: PLATFORM ACCESS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">06</div>
+      <div class="section-title">Platform Access</div>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Which platforms can you give Magia access to? <span class="q-hint">Select all you can share. We'll coordinate on our kickoff call — nothing happens without your say-so.</span></label>
+      <div class="choice-group">
+        <div class="choice-item" onclick="toggleCheck(this,'q_access','Instagram (admin access)')">
+          <div class="choice-check"></div><div class="choice-text">Instagram (admin access)</div>
+        </div>
+        <div class="choice-item" onclick="toggleCheck(this,'q_access','Facebook Page')">
+          <div class="choice-check"></div><div class="choice-text">Facebook Page</div>
+        </div>
+        <div class="choice-item" onclick="toggleCheck(this,'q_access','Google Business Profile')">
+          <div class="choice-check"></div><div class="choice-text">Google Business Profile</div>
+        </div>
+        <div class="choice-item" onclick="toggleCheck(this,'q_access','TikTok')">
+          <div class="choice-check"></div><div class="choice-text">TikTok (if applicable)</div>
+        </div>
+        <div class="choice-item" onclick="toggleCheck(this,'q_access','Website / CMS')">
+          <div class="choice-check"></div><div class="choice-text">Website or CMS access</div>
+        </div>
+        <div class="choice-item" onclick="toggleCheck(this,'q_access','Practice management software')">
+          <div class="choice-check"></div><div class="choice-text">Practice management software (Therapy Brands, SimplePractice, etc.)</div>
+        </div>
+        <div class="choice-item" onclick="toggleCheck(this,'q_access','Canva')">
+          <div class="choice-check"></div><div class="choice-text">Canva account</div>
+        </div>
+        <div class="choice-item" onclick="toggleCheck(this,'q_access','Google Drive')">
+          <div class="choice-check"></div><div class="choice-text">Google Drive (shared folder for assets)</div>
+        </div>
+        <div class="choice-item" onclick="toggleCheck(this,'q_access','Email / Mailchimp')">
+          <div class="choice-check"></div><div class="choice-text">Email platform / Mailchimp</div>
+        </div>
+      </div>
+      <input type="hidden" id="q_access">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Anything else Magia should have access to, or anything worth knowing before we start?</label>
+      <textarea id="q_access_notes" placeholder="Other tools, logins, platforms, or notes for Mel..."></textarea>
+    </div>
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="submit-section">
+    <button class="submit-btn" onclick="submitForm()">Send My Answers →</button>
+    <div class="submit-note">Your answers go directly to Mel at Magia Marketing Studio.</div>
+  </div>
+
+</div>
+</div>
+
+<!-- SUCCESS -->
+<div class="success-screen" id="successScreen">
+  <div class="success-icon">✦</div>
+  <div class="success-title">Thank you, Ana.</div>
+  <div class="success-body">Your answers are with Mel. She'll read everything carefully and reach out to schedule your kickoff call.<br><br>We can't wait to start building something beautiful together.</div>
+  <div style="margin-top:28px;font-family:'Raleway',sans-serif;font-size:9px;letter-spacing:0.25em;color:rgba(196,123,90,0.5);text-transform:uppercase;">Magia Marketing Studio &nbsp;·&nbsp; Aligned With Me Therapy</div>
+</div>
+
+<script>
+// ── RADIO SELECT ──────────────────────────────────────────────────────────────
+function selectRadio(el, fieldId, value) {
+  const group = el.closest('.choice-group');
+  group.querySelectorAll('.choice-item').forEach(item => item.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById(fieldId).value = value;
+  updateProgress();
+}
+
+// ── CHECKBOX TOGGLE ───────────────────────────────────────────────────────────
+const checkState = {};
+function toggleCheck(el, fieldId, value) {
+  if (!checkState[fieldId]) checkState[fieldId] = [];
+  const idx = checkState[fieldId].indexOf(value);
+  if (idx === -1) {
+    checkState[fieldId].push(value);
+    el.classList.add('selected');
+  } else {
+    checkState[fieldId].splice(idx, 1);
+    el.classList.remove('selected');
+  }
+  document.getElementById(fieldId).value = checkState[fieldId].join(', ');
+  updateProgress();
+}
+
+// ── PROGRESS ──────────────────────────────────────────────────────────────────
+const allFields = [
+  'q_name','q_biz_name','q_phone','q_email','q_area','q_years','q_format','q_team',
+  'q_client_types','q_languages','q_frustration','q_persona','q_headline_yes',
+  'q_headline_no','q_differentiator','q_camera','q_content_pillars','q_content_lang',
+  'q_client_goal','q_success','q_access'
+];
+
+function updateProgress() {
+  const filled = allFields.filter(id => {
+    const el = document.getElementById(id);
+    return el && el.value && el.value.trim() !== '';
+  }).length;
+  document.getElementById('progressFill').style.width = (filled / allFields.length * 100) + '%';
+}
+
+document.querySelectorAll('input[type="text"],input[type="email"],textarea')
+  .forEach(el => el.addEventListener('input', updateProgress));
+
+// ── SUBMIT ────────────────────────────────────────────────────────────────────
+function getVal(id) {
+  return (document.getElementById(id) || {}).value || '';
+}
+
+async function submitForm() {
+  const btn = document.querySelector('.submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  const data = {
+    _subject:                    'AWMT Onboarding — ' + (getVal('q_name') || 'Ana'),
+    name:                        getVal('q_name'),
+    practice_name:               getVal('q_biz_name'),
+    phone:                       getVal('q_phone'),
+    email:                       getVal('q_email'),
+    website:                     getVal('q_website'),
+    instagram:                   getVal('q_ig'),
+    years_in_practice:           getVal('q_years'),
+    service_delivery_format:     getVal('q_format'),
+    service_area:                getVal('q_area'),
+    team_structure:              getVal('q_team'),
+    ideal_client_families:       getVal('q_client_types'),
+    languages_offered:           getVal('q_languages'),
+    family_frustrations:         getVal('q_frustration'),
+    ideal_relationship:          getVal('q_relationship'),
+    brand_persona:               getVal('q_persona'),
+    headline_most_like_awmt:     getVal('q_headline_yes'),
+    headline_least_like_awmt:    getVal('q_headline_no'),
+    what_makes_awmt_different:   getVal('q_differentiator'),
+    never_sound_like:            getVal('q_never'),
+    personal_story:              getVal('q_story'),
+    camera_comfort:              getVal('q_camera'),
+    content_pillars:             getVal('q_content_pillars'),
+    content_language:            getVal('q_content_lang'),
+    content_inspiration:         getVal('q_inspo'),
+    current_caseload:            getVal('q_caseload'),
+    new_family_goal:             getVal('q_client_goal'),
+    service_focus:               getVal('q_service_focus'),
+    success_in_12_months:        getVal('q_success'),
+    anything_else:               getVal('q_extra'),
+    platform_access:             getVal('q_access'),
+    access_notes:                getVal('q_access_notes'),
+  };
+
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 12000);
+
+  try {
+    const res = await fetch('https://formspree.io/f/PLACEHOLDER_AWMT', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data),
+      signal: controller.signal
+    });
+    clearTimeout(timer);
+
+    if (res.ok) {
+      document.getElementById('mainForm').style.display = 'none';
+      document.getElementById('successScreen').style.display = 'block';
+      window.scrollTo(0, 0);
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'Send My Answers →';
+      alert('Something went wrong. Please try again.');
+    }
+  } catch(err) {
+    clearTimeout(timer);
+    btn.disabled = false;
+    btn.textContent = 'Send My Answers →';
+    const msg = err.name === 'AbortError'
+      ? 'Request timed out. Please check your connection and try again.'
+      : 'Connection error. Please check your internet and try again.';
+    alert(msg);
+  }
+}
+</script>
+</body>
+</html>
