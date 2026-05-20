@@ -212,6 +212,71 @@ textarea { resize:vertical;min-height:90px;line-height:1.6; }
   margin-top:12px;
 }
 
+/* ── PIN GATE ── */
+#pinGate {
+  position:fixed;inset:0;z-index:1000;
+  background:var(--teal);
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;
+}
+.pin-card {
+  background:var(--cream);
+  border-radius:16px;
+  padding:40px 32px;
+  max-width:360px;width:100%;
+  text-align:center;
+  box-shadow:0 8px 40px rgba(0,0,0,0.25);
+}
+.pin-logo {
+  font-family:'Raleway',sans-serif;font-weight:200;
+  font-size:9px;letter-spacing:0.45em;
+  color:rgba(196,123,90,0.7);text-transform:uppercase;
+  margin-bottom:20px;
+}
+.pin-title {
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:28px;color:var(--teal);
+  line-height:1.1;margin-bottom:8px;
+}
+.pin-sub {
+  font-family:'Lato',sans-serif;font-style:italic;
+  font-size:13px;color:var(--muted);
+  margin-bottom:28px;line-height:1.5;
+}
+.pin-input {
+  width:100%;
+  background:var(--warm);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:14px;
+  font-family:'Lato',sans-serif;
+  font-size:22px;
+  letter-spacing:0.3em;
+  text-align:center;
+  color:var(--char);
+  outline:none;
+  transition:border-color 0.18s,box-shadow 0.18s;
+  margin-bottom:16px;
+}
+.pin-input:focus {
+  border-color:var(--terra);
+  box-shadow:0 0 0 3px rgba(196,123,90,0.12);
+}
+.pin-btn {
+  width:100%;
+  background:var(--terra);color:#FAF7F3;
+  font-family:'Raleway',sans-serif;font-weight:700;
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  padding:15px;border-radius:2px;border:none;
+  cursor:pointer;transition:background 0.2s;
+}
+.pin-btn:hover { background:#B36B4A; }
+.pin-error {
+  font-family:'Lato',sans-serif;font-style:italic;
+  font-size:12px;color:var(--terra);
+  margin-top:12px;min-height:18px;
+}
+
 /* ── SUCCESS ── */
 .success-screen {
   display:none;
@@ -241,6 +306,18 @@ textarea { resize:vertical;min-height:90px;line-height:1.6; }
 </head>
 <body>
 
+<div id="pinGate">
+  <div class="pin-card">
+    <div class="pin-logo">Magia Moderna</div>
+    <div class="pin-title">Enter your<br>access code</div>
+    <div class="pin-sub">This form is private. Enter the code Mel sent you to continue.</div>
+    <input class="pin-input" id="pinInput" type="password" inputmode="numeric" maxlength="6" placeholder="· · · ·" autocomplete="off">
+    <button class="pin-btn" onclick="checkPin()">Continue →</button>
+    <div class="pin-error" id="pinError"></div>
+  </div>
+</div>
+
+<div id="siteContent" style="display:none">
 <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 
 <div class="hero">
@@ -263,7 +340,7 @@ textarea { resize:vertical;min-height:90px;line-height:1.6; }
 
     <div class="q-card">
       <label class="q-label">Your full name</label>
-      <input type="text" id="q_name" placeholder="Ana Campo-Jimenez">
+      <input type="text" id="q_name" placeholder="Your full name">
     </div>
 
     <div class="q-card">
@@ -278,17 +355,17 @@ textarea { resize:vertical;min-height:90px;line-height:1.6; }
 
     <div class="q-card">
       <label class="q-label">Email address</label>
-      <input type="email" id="q_email" placeholder="ana@alignedwithmetherapy.com">
+      <input type="email" id="q_email" placeholder="your@email.com">
     </div>
 
     <div class="q-card">
       <label class="q-label">Website URL (if you have one)</label>
-      <input type="text" id="q_website" placeholder="alignedwithmetherapy.com">
+      <input type="text" id="q_website" placeholder="yourwebsite.com">
     </div>
 
     <div class="q-card">
       <label class="q-label">Instagram handle</label>
-      <input type="text" id="q_ig" placeholder="@alignedwithmetherapy">
+      <input type="text" id="q_ig" placeholder="@yourhandle">
     </div>
 
     <div class="q-card">
@@ -666,7 +743,37 @@ textarea { resize:vertical;min-height:90px;line-height:1.6; }
   <div style="margin-top:28px;font-family:'Raleway',sans-serif;font-size:9px;letter-spacing:0.25em;color:rgba(196,123,90,0.5);text-transform:uppercase;">Magia Moderna &nbsp;·&nbsp; Aligned With Me Therapy</div>
 </div>
 
+</div><!-- /siteContent -->
+
 <script>
+// ── PIN GATE ──────────────────────────────────────────────────────────────────
+const SITE_PIN = '2605';
+
+function unlock() {
+  document.getElementById('pinGate').style.display = 'none';
+  document.getElementById('siteContent').style.display = 'block';
+  sessionStorage.setItem('awmt_auth', '1');
+}
+
+function checkPin() {
+  const val = document.getElementById('pinInput').value.trim();
+  if (val === SITE_PIN) {
+    unlock();
+  } else {
+    const err = document.getElementById('pinError');
+    err.textContent = 'Incorrect code — try again.';
+    document.getElementById('pinInput').value = '';
+    document.getElementById('pinInput').focus();
+  }
+}
+
+document.getElementById('pinInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') checkPin();
+  document.getElementById('pinError').textContent = '';
+});
+
+if (sessionStorage.getItem('awmt_auth') === '1') unlock();
+
 // ── RADIO SELECT ──────────────────────────────────────────────────────────────
 function selectRadio(el, fieldId, value) {
   const group = el.closest('.choice-group');
